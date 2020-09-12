@@ -1,4 +1,4 @@
-module Prueba where
+module Graphics3D.Prueba where
 {-
    Brick.hs (adapted from ogl2brick.c which is (c) 3Dlabs Inc. Ltd.)
    Copyright (c) Sven Panne 2018 <svenpanne@gmail.com>
@@ -41,8 +41,9 @@ clearColors = [
 models :: [IO ()]
 models = [
    drawCube,
-   renderObject Solid (Teapot 0.6),
-   renderObject Solid (Sphere' 0.6 64 64),
+   drawCell $ my3DCells!!0,
+   drawCell $ my3DCells!!1,
+   drawCell $ my3DCells!!2,
    renderObject Solid (Torus 0.2 0.6 64 64) ]
 
 initialDiff :: Vector3 GLfloat
@@ -72,7 +73,7 @@ makeState = do
    io <- newIORef (pure 0)
    sc <- newIORef 1
    lp <- newIORef (Position (-1) (-1))
-   sr <- newIORef True
+   sr <- newIORef False
    cc <- newIORef (cycle clearColors)
    mc <- newIORef (cycle models)
    mo <- newIORef (Modifiers Up Up Up)
@@ -114,6 +115,36 @@ drawFace p q r s t = do
    vertex s
    texCoord2f (TexCoord2 1 0)
    vertex t
+
+my3DCells :: [[[GLfloat]]]
+my3DCells = [[[0,0,0],[0,0,1],[0,1,0],
+                    [0,0,0],[0,0,1],[1,1,1],
+                    [0,0,0],[0,1,0],[1,1,1],
+                    [0,0,1],[0,1,0],[1,1,1]]
+                    ,
+                    [[0,0,0],[0,0,1],[1,0,0],
+                    [0,0,0],[0,0,1],[1,1,1],
+                    [0,0,0],[1,0,0],[1,1,1],
+                    [0,0,1],[1,0,0],[1,1,1]]
+                    ,
+                    [[0,0,0],[0,1,0],[1,0,0],
+                    [0,0,0],[0,1,0],[1,1,1],
+                    [0,0,0],[1,0,0],[1,1,1],
+                    [0,1,0],[1,0,0],[1,1,1]]]
+
+vertex3f :: [GLfloat] -> IO ()
+vertex3f [x, y, z] = vertex $ Vertex3 x y z
+
+toNorm3 :: [a] -> Normal3 a
+toNorm3 v@([x,y,z]) = Normal3 x y z
+
+toVector3 :: [a] -> Vector3 a
+toVector3 v@([x,y,z]) = Vector3 x y z
+
+drawCell :: [[GLfloat]] -> IO()
+drawCell points = do
+   renderPrimitive Triangles $ mapM_ vertex3f points 
+
 
 drawCube :: IO ()
 drawCube = do
@@ -161,6 +192,10 @@ display state = do
    clear [ ColorBuffer, DepthBuffer ]
    (drawModel:_) <- get (modelCycle state)
    drawModel
+
+   -- models!!1
+   -- models!!2
+   -- models!!3
 
    flush
    swapBuffers

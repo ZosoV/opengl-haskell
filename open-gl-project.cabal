@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 774186854289ec6c549b1512779c490cad1130d8dd03994f9a92cb6b6c3311cc
+-- hash: 5164529e69c9323043cdae33cbac850823cc24b836cfc29bfa78a6c63be3447d
 
 name:           open-gl-project
 version:        0.1.0.0
@@ -31,10 +31,10 @@ library
       Bindings
       Display
       Draw2D
+      Graphics3D.Prueba
       GraphicsUtil
       Lib
       MainGraphics
-      Prueba
       SamplePoints
   other-modules:
       Paths_open_gl_project
