@@ -1,4 +1,3 @@
-
 module Draw2D where
 
 import Graphics.UI.GLUT

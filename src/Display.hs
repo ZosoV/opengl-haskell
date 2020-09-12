@@ -1,16 +1,17 @@
+--- README: Define different display function according what you need
 module Display (display) where
 
 import Graphics.UI.GLUT
 import Graphics.Rendering.OpenGL
 import Graphics.GL.Internal.Shared
 import Graphics.UI.GLUT.Fonts
+import Data.IORef
 
 -- Own Packages
 import GraphicsUtil
 import SamplePoints
 import Axis
 import Draw2D
-import Data.IORef
 
 -- Function that display the principal objects of the scene
 display :: IORef GLfloat -> IORef (GLfloat, GLfloat) -> IORef [Bool]-> DisplayCallback

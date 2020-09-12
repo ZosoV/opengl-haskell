@@ -4,7 +4,7 @@ cabal-version: 1.12
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: 5164529e69c9323043cdae33cbac850823cc24b836cfc29bfa78a6c63be3447d
+-- hash: 45cb7f71af33cdabe361ac4941c442b1a2eabd6f9b13b23c3d4b97bc463b3447
 
 name:           open-gl-project
 version:        0.1.0.0
@@ -31,7 +31,13 @@ library
       Bindings
       Display
       Draw2D
+      Graphics3D.Bindings
+      Graphics3D.Display
+      Graphics3D.Main3DGraphics
+      Graphics3D.Models
       Graphics3D.Prueba
+      Graphics3D.State
+      Graphics3D.Utils
       GraphicsUtil
       Lib
       MainGraphics

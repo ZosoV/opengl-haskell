@@ -1,3 +1,5 @@
+--- README: In this script, I place some points to probe the code
+
 module SamplePoints where
 
 import Graphics.UI.GLUT
@@ -26,8 +28,6 @@ my2DDualPoints = [(-0.56,  0.13,   0),(-0.26,  0.13,   0),
                   
 myCellPoints :: [(GLfloat,GLfloat,GLfloat)]
 myCellPoints =  [(-0.26,  0.13,   0), (-0.26, -0.13,  0), (-0.13, -0.26,  0), (0.13, -0.26, 0)]
-
-
 
 myExtremalVertexs :: [GLVertex]
 myExtremalVertexs = [[-0.4, 0.4, 0],[-0.4, -0.4, 0],[ 0.4,   -0.4, 0]]
