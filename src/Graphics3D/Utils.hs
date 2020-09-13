@@ -57,16 +57,18 @@ toggleRotation state = do
 printHelp :: IO ()
 printHelp = mapM_ putStrLn [
     "",
-    "Keyboard commands:",
+    "KEYBOARD COMMANDS:",
     "",
-    "b - Toggle among background clear colors",
-    "q, <esc> - Quit",
-    "t - Toggle among models to render",
-    "? - Help",
-    "<home> - reset zoom and rotation",
-    "<space> or <click> - stop rotation",
-    "<+>, <-> or <ctrl + drag> - zoom model",
-    "<arrow keys> or <drag> - rotate model",
+    "a \t \t \t \t - Show axis",
+    "r \t \t \t \t - Display full model (all cells).",
+    "t \t \t \t \t - Toggle among cells to render",
+    "b \t \t \t \t - Toggle among background clear colors",
+    "q or <esc> \t \t \t - Quit",
+    "? \t \t \t \t - Help",
+    "<home> \t \t \t \t - reset zoom and rotation",
+    "<space> or <click> \t \t - stop rotation",
+    "<+>, <-> or <ctrl + drag> \t - zoom model",
+    "<arrow keys> or <drag> \t \t - rotate model",
     ""]
 
 resetState :: State -> IO ()
@@ -87,3 +89,4 @@ calcInertia state = do
         r = (step t li) $* ((li $- t) $* f $- ia)
     inertia state $= l $+ ia $+ r
     lastIncr state $= pure 0
+

@@ -21,7 +21,7 @@ display angle pos flags = do
     -- load flags
     [show_labels, dual, separate] <- get flags
 
-    drawAxis
+    drawAxis 1
     -- draw2DSurface my2DPoints
     drawAllCells my2DCells angle pos show_labels
     if dual then draw2DDual my2DDualPoints else return ()

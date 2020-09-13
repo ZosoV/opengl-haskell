@@ -1,5 +1,4 @@
  --- README: Define a state type to control the changes in the render
-
 module Graphics3D.State where
 
 import Graphics.UI.GLUT
@@ -10,8 +9,8 @@ import Graphics3D.Models
 
 clearColors :: [Color4 GLclampf]
 clearColors = [
-    Color4 0.0 0.0 0.0 1,
     Color4 0.2 0.2 0.3 1,
+    Color4 0.0 0.0 0.0 1,
     Color4 0.7 0.7 0.7 1 ]
 
 initialDiff :: Vector3 GLfloat
@@ -29,7 +28,9 @@ data State = State {
    lastPosition :: IORef Position,
    shouldRotate :: IORef Bool,
    colorCycle :: IORef [Color4 GLclampf],
-   modelCycle :: IORef [IO ()],
+   modelCycle :: IORef [(IO (), Color3 GLclampf)],
+   renderFullModel :: IORef Bool,
+   showAxis :: IORef Bool,
    modifiers :: IORef Modifiers
    }
 
@@ -43,7 +44,10 @@ makeState = do
    lp <- newIORef (Position (-1) (-1))
    sr <- newIORef False
    cc <- newIORef (cycle clearColors)
-   mc <- newIORef (cycle models)
+   cm <- newIORef (cycle clearColors)
+   mc <- newIORef (cycle (models cellsNormal))
+   rf <- newIORef True
+   sa <- newIORef True
    mo <- newIORef (Modifiers Up Up Up)
    return $ State {
       diff = di,
@@ -55,5 +59,7 @@ makeState = do
       shouldRotate = sr,
       colorCycle = cc,
       modelCycle = mc,
+      renderFullModel = rf,
+      showAxis = sa,
       modifiers = mo
       }

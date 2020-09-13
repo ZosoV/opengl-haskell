@@ -3,8 +3,8 @@ module Graphics3D.Bindings where
 
 import Graphics.UI.GLUT
 import Data.IORef
-import System.Exit
 import Control.Monad ( when, unless )
+import System.Exit
 
 -- Own Packages
 import Graphics3D.Display
@@ -16,6 +16,8 @@ keyboard state key keyState mods _ = do
    modifiers state $= mods
    postRedisplay Nothing
    case (key, keyState) of
+      (Char 'r', Down) -> renderFullModel state $~ not
+      (Char 'a', Down) -> showAxis state $~ not
       (Char 'b', Down) -> nextClearColor state
       (Char 'q', Down) -> exitWith ExitSuccess
       (Char '\27', Down) -> exitWith ExitSuccess

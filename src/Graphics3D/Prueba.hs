@@ -369,8 +369,8 @@ installBrickShaders shaders = do
    setUniform "BrickPct" (Vertex2 0.90 (0.85 :: GLfloat))
    setUniform "LightPosition" (Vertex3 0 0 (4 :: GLfloat))
 
-plot2 :: IO ()
-plot2 = do
+plot3 :: IO ()
+plot3 = do
    _ <- getArgsAndInitialize
    initialDisplayMode $= [ RGBMode, WithDepthBuffer, DoubleBuffered ]
    initialWindowSize $= Size 500 500
